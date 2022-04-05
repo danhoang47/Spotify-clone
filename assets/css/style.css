@@ -9,16 +9,41 @@ html {
     font-size: 62.5%; 
 }
 
+.p-l-1 {
+    padding-left: 1em;
+}
+
 :root {
     --black-200: #202020;
     --black-300: #171717;
     --black-350: #131313;
     --black-400: #121212;
     --gray-300: #b3b3b3;
+    --gray-400: #838282;
+    --gray-500: #555454;
     --font-color: #ffffff;
     --main-green: #1ed760;
+    --ele-length: 25rem;
 }
 /* cursor: col-resize */
+
+/*scroll-bar*/
+
+::-webkit-scrollbar {
+    width: 1.2rem;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--black-200);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gray-500);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-400);
+}
 
 #wrapper {
     position: relative;
@@ -27,21 +52,89 @@ html {
 
 aside {
     background: var(--black-400);
-    color: var(--font-color);
-    width: 20rem;
-    height: 100vh;
+    color: var(--gray-300);
+    width: var(--ele-length);
+    height: 100%;
     position: fixed;
+    font-size: 1.6rem; 
 }
 
-aside svg {
-
+aside .logo {
+    display: flex;
+    align-items: center;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    cursor: pointer;
+    color: var(--font-color);
 }
+
+aside .logo .fa-spotify {
+    font-size: 2.5em;
+}
+
+aside .logo .brand-name {
+    font-size: 1.5em;
+    display: inline-block;
+    margin-left: 0.2em;
+    font-weight: 545;
+}
+
+aside .fuc-nav ul, aside .play-list-nav ul {
+    list-style-type: none;
+}
+
+aside .fuc-nav li, aside .play-list-nav li {
+    cursor: pointer;
+    font-size: 2.4rem; /*22px*/
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s;
+    font-weight: 600;
+}
+
+aside .fuc-nav .des, aside .play-list-nav .des {
+    font-size: 0.6em;
+    margin-left: 1em;
+}
+
+aside .fuc-nav li:hover, aside .play-list-nav li:hover,
+aside .sub-nav > *:hover {
+    color: var(--font-color);
+}
+
+aside .play-list-nav {
+    margin-top: 2.5rem;
+    font-size: 1.6rem;
+}
+
+aside .sub-nav {
+    border-top: 1px solid var(--gray-500);
+    font-size: 1.4rem; 
+    margin: 0 1.7143em; 
+    font-weight: 600;
+}
+
+aside .sub-nav > * {
+    padding: 0.6em 0;
+    cursor: pointer;
+}
+
+aside .sub-nav .play-list i {
+    font-style: normal;
+}
+
+aside .sub-nav div:first-child {
+    margin-top: 0.6em;
+}
+
 
 main {
     position: absolute;
     top: 0;
-    left: 20rem;
+    left: var(--ele-length);
     background: var(--black-200);
-    width: calc(100% - 20rem);
+    width: calc(100% - var(--ele-length));
     height: 300vh;
 }
