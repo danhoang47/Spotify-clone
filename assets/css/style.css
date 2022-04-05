@@ -4,4 +4,44 @@
     box-sizing: border-box;
 }
 
+html {
+    /*10 px*/
+    font-size: 62.5%; 
+}
+
+:root {
+    --black-200: #202020;
+    --black-300: #171717;
+    --black-350: #131313;
+    --black-400: #121212;
+    --gray-300: #b3b3b3;
+    --font-color: #ffffff;
+    --main-green: #1ed760;
+}
 /* cursor: col-resize */
+
+#wrapper {
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+aside {
+    background: var(--black-400);
+    color: var(--font-color);
+    width: 20rem;
+    height: 100vh;
+    position: fixed;
+}
+
+aside svg {
+
+}
+
+main {
+    position: absolute;
+    top: 0;
+    left: 20rem;
+    background: var(--black-200);
+    width: calc(100% - 20rem);
+    height: 300vh;
+}
