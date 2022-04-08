@@ -1,0 +1,11 @@
+@media (max-width: 1160px) {
+    #main-content .content-section .content {
+        grid-template-columns: repeat(3, var(--item-length));
+        grid-auto-rows: 0;
+        height: var(--item-height);
+    }
+
+    #main-content .content-section .content > *:nth-child(4) {
+        display: none;
+    }
+}

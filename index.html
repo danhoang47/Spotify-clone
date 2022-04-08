@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify Clone</title>
     <link rel="stylesheet" href="./assets/css/style.css">
-    <script src="script/main.js"></script>
+    <link rel="stylesheet" href="./assets/css/animations.css">
+    <link rel="stylesheet" href="./assets/css/atomic.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
     <script src="https://kit.fontawesome.com/3401f860a7.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -14,22 +16,22 @@
         <aside>
             <div class="logo p-l-1">
                 <i class="fa-brands fa-spotify"></i>
-                <h3 class="brand-name">Spotify-C</h3>
+                <h3 class="brand-name hide-word">Spotify-C</h3>
             </div>
             <div class="main-nav">
                 <nav class="fuc-nav">
                     <ul>
                         <li class="p-l-1" name="Home">
                             <i class="fa-solid fa-house"></i>
-                            <p class="des">Home</p>
+                            <p class="des hide-word">Home</p>
                         </li>
                         <li class="p-l-1" name="Search">
                             <i class="fa-solid fa-magnifying-glass"></i>
-                            <p class="des">Search</p>
+                            <p class="des hide-word">Search</p>
                         </li>
                         <li class="p-l-1" name="Library">
                             <i class="fa-solid fa-circle-play"></i></i>
-                            <p class="des">Library</p>
+                            <p class="des hide-word">Library</p>
                         </li>
                     </ul>
                 </nav>
@@ -37,11 +39,11 @@
                     <ul>
                         <li class="p-l-1" name="Playlist">
                             <i class="fa-solid fa-square-plus"></i>
-                            <p class="des">Create Playlist</p>
+                            <p class="des hide-word">Create Playlist</p>
                         </li>
                         <li class="p-l-1" name="Liked-Song">
                             <i class="fa-brands fa-gratipay"></i>
-                            <p class="des">Liked Songs</p>
+                            <p class="des hide-word">Liked Songs</p>
                         </li>
                     </ul>
                 </nav>
@@ -49,64 +51,180 @@
 
             <div class="sub-nav">
                 <div class="play-list">
-                    <p>My Playlist #<i>1</i></p>
+                    <p class="hide-word">My Playlist #<i>1</i></p>
                 </div>
                 <div class="hot-hits-list">
-                    <p>Hot Hits Vietnam</p>
+                    <p class="hide-word">Hot Hits Vietnam</p>
                 </div>
             </div>
         </aside>
         <main>
-            <div class="resize-bar"></div>
+            <div class="resize-bar p-l-2 p-r-2"></div>
             <div id="head-bar">
-                <div class="nav-buttons"></div>
-                <div class="upgrade-button"></div>
-                <div class="user-nav">
-                    <img src="" alt="" class="avatar">
-                    <p class="name"></p>
-                    <div class="options-button"></div>
+                <div class="nav-buttons">
+                    <i class="fa-solid fa-angle-left bg-b-350"></i>
+                    <i class="fa-solid fa-angle-right bg-b-350"></i>
+                </div>
+                <div class="upgrade">
+                    <button class="up-button bg-b-350">
+                        <p>Upgrade</p>
+                    </button>
+                </div>
+                <div class="user-nav bg-b-350">
+                    <img src="./assets/user/user_profile.jpg" alt="" class="avatar">
+                    <p class="name">Anh Khoa</p>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="options bg-g-700 d-none">
+                    <ul>
+                        <li class="opt">
+                            <span>Account</span>
+                            <i class="fa-solid fa-up-right-from-square"></i>
+                        </li>
+                        <li class="opt">
+                            <span>Profile</span>
+                        </li>
+                        <li class="opt">
+                            <span>Upgrade to Premium</span>
+                            <i class="fa-solid fa-up-right-from-square"></i>
+                        </li>
+                        <li class="opt">
+                            <span>Log up</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div id="main-content">
                 <section class="content-section">
-                    <h3 class="heading">Shows to try</h3>
-                    <div class="content"></div>
+                    <h3 class="heading">To get you started</h3>
+                    <div class="content">
+                        <div class="content-box">
+                            <img src="./assets/images/chimsau_mck.jpg" alt="MCK Mix">
+                            <h4 class="name">RPT MCK Mix</h4>
+                            <p class="info">Obito, Tlinh, Cam and more </p>
+                            <div class="play-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="content-box">
+                            <img src="./assets/images/buocquanhau_vu.jpg" alt="">                                    
+                            <h4 class="name">Vu</h4>
+                            <p class="des">Buoc Qua Nhau</p>
+                            <div class="play-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 <section class="content-section">
-                    <h3 class="heading"></h3>
-                    <div class="content"></div>
+                    <h3 class="heading">Featured Charts</h3>
+                    <div class="content">
+                        <div class="content">
+                            <div class="content-box">
+                                <img src="https://charts-images.scdn.co/assets/locale_en/regional/daily/region_vn_default.jpg" alt="MCK Mix">
+                                <h4 class="name">Top 50 Vietnam</h4>
+                                <p class="info">Weekly Update</p>
+                                <div class="play-btn">
+                                    <i class="fa-solid fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="content-box">
+                                <img src="https://charts-images.scdn.co/assets/locale_en/regional/daily/region_global_default.jpg" alt="MCK Mix">
+                                <h4 class="name">Top 50 Global</h4>
+                                <p class="info">Monthly Update</p>
+                                <div class="play-btn">
+                                    <i class="fa-solid fa-play"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 <section class="content-section">
-                    <h3 class="heading"></h3>
-                    <div class="content"></div>
+                    <h3 class="heading">More like Hot Hits Vietnam</h3>
+                    <div class="content">
+                        <div class="content-box">
+                            <img src="./assets/images/chimsau_mck.jpg" alt="MCK Mix">
+                            <h4 class="name">Chim Sau</h4>
+                            <p class="info">MCK ft Trung Tran</p>
+                            <div class="play-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="content-box">
+                            <img src="./assets/images/buocquamuacodon_vu.jpg" alt="">                                    
+                            <h4 class="name">Buoc Qua Mua Co Don</h4>
+                            <p class="des">Vu</p>
+                            <div class="play-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="content-box">
+                            <img src="./assets/images/conanh_vu.jpg" alt="">                                    
+                            <h4 class="name">Con Anh</h4>
+                            <p class="des">Vu</p>
+                            <div class="play-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="content-box">
+                            <img src="./assets/images/gieoqua_HTL_Den.jpg" alt="">                                    
+                            <h4 class="name">Gieo Que</h4>
+                            <p class="des">Hoang Thuy Linh - Den Vau</p>
+                            <div class="play-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 <section class="content-section">
-                    <h3 class="heading"></h3>
-                    <div class="content"></div>
+                    <h3 class="heading">US-UK Songs</h3>
+                    <div class="content">
+                        <div class="content-box">
+                            <img src="./assets/images/stay_justinbieber.jpg" alt="MCK Mix">
+                            <h4 class="name">Stay</h4>
+                            <p class="info">MCK ft Trung Tran</p>
+                            <div class="play-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="content-box">
+                            <img src="./assets/images/industry_baby.jpg" alt="">                                    
+                            <h4 class="name">Industry Baby</h4>
+                            <p class="des">Lil Nas X</p>
+                            <div class="play-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="content-box">
+                            <img src="./assets/images/levitating_dualipa.jpg" alt="">                                    
+                            <h4 class="name">Levitating</h4>
+                            <p class="des">Dua Lipa</p>
+                            <div class="play-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 <section class="content-section">
-                    <h3 class="heading"></h3>
-                    <div class="content"></div>
-                </section>
-                <section class="content-section">
-                    <h3 class="heading"></h3>
-                    <div class="content"></div>
-                </section>
-                <section class="content-section">
-                    <h3 class="heading"></h3>
-                    <div class="content"></div>
-                </section>
-                <section class="content-section">
-                    <h3 class="heading"></h3>
-                    <div class="content"></div>
-                </section>
-                <section class="content-section">
-                    <h3 class="heading"></h3>
-                    <div class="content"></div>
-                </section>
-                <section class="content-section">
-                    <h3 class="heading"></h3>
-                    <div class="content"></div>
+                    <h3 class="heading">Vietnamese Artist</h3>
+                    <div class="content">
+                        <div class="content-box">
+                            <img class="b-round" src="https://i.scdn.co/image/ab67616100005174a4284299b26bf3ab41ab54fa" alt="">                                    
+                            <h4 class="name">MANBO</h4>
+                            <p class="des">Artist</p>
+                            <div class="play-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="content-box">
+                            <img src="https://i.scdn.co/image/ab676161000051742d6fade2273bd13062501d60" class="b-round" alt="">                                    
+                            <h4 class="name">Anh Phan</h4>
+                            <p class="des">Artist</p>
+                            <div class="play-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
         </main>
@@ -117,4 +235,5 @@
         </div>
     </div>
 </body>
+<script src="script/main.js" async></script>
 </html>
