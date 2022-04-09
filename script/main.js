@@ -5,6 +5,7 @@ const resizeBar = document.querySelector('main .resize-bar');
 const sideBar = document.querySelector('aside');
 const mainSection = document.querySelector('main');
 const root = document.querySelector('html');
+const scrollBar = document.querySelector('#wrapper .scroll-thumb');
 let mouseDown = false;
 let defaultOffset;
 let maxSize = 413, minSize = 151;
@@ -22,10 +23,23 @@ userBtn.addEventListener('click', () => {
 })
 
 document.addEventListener('scroll', () => {
-    let alpha = scrollY / innerHeight;
-    alpha = alpha >= 1 ? 1 : alpha;
-    headBar.style.backgroundColor = `rgba(0, 0, 0, ${alpha})`;
+    let maxY = mainSection.scrollHeight - innerHeight;
+    let maxOffsetY = innerHeight - parseInt(getComputedStyle(scrollBar).height);
+    changeOpaHeadBar();
+    moveScrollBar(maxY, maxOffsetY);
 })
+
+function moveScrollBar(maxY, maxOffsetY) {
+    // innerHeight : get height of client
+    let curPosition = (scrollY/maxY) * maxOffsetY;
+    scrollBar.style.top = `${curPosition}px`;
+}
+
+function changeOpaHeadBar() {
+    let alpha = scrollY / innerHeight;
+        alpha = alpha >= 1 ? 1 : alpha;
+        headBar.style.backgroundColor = `rgba(0, 0, 0, ${alpha})`;
+}
 
 resizeBar.addEventListener('mousedown', function(e) {
     mouseDown = true;
