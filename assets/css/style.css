@@ -14,6 +14,7 @@ html {
     --black-350: #131313;
     --black-400: #121212;
     --black-900: rgba(0, 0, 0, 1);
+    --gray-200: #d5d5d5;
     --gray-300: #b3b3b3;
     --gray-400: #838282;
     --gray-500: #555454;
@@ -25,6 +26,7 @@ html {
     --item-length: 12.4em;
     --item-height: 16.75em;
     --ele-length: 25rem;
+    --play-height: 6em;
 }
 /* cursor: col-resize */
 
@@ -40,24 +42,31 @@ html {
 }
 
 #wrapper .scroll-bar {
+    font-size: 1.6rem;
     position: fixed;
     top: 0;
     right: 0;
-    bottom: 0;
-    width: 1.5em;
+    width: 0.8em;
+    z-index: 10;
+    bottom: var(--play-height);
     /* background: var(--gray-500);  */
 }
 
 #wrapper .scroll-bar .scroll-thumb {
     position: absolute;
     width: 100%;
-    height: 16em;
+    height: 10em;
     top: 0;
     background-color: var(--gray-600);
+    transition: top 0.05s;
+    background-clip: content-box;
+    box-sizing: content-box;
+    padding: 4em 0;
+    margin: -4em 0;
 }
 
 #wrapper .scroll-bar .scroll-thumb:hover {
-    background-color: var(--gray-500);
+    background-color: var(--gray-400);
 }
 
 aside {
@@ -296,6 +305,7 @@ main .resize-bar:hover {
     margin-top: 4.24em;
     color: var(--font-color);
     margin-left: 1em;
+    margin-bottom: calc(var(--play-height) + 2em);
 }
 
 #main-content .content-section {
@@ -380,5 +390,188 @@ main .resize-bar:hover {
 #main-content .content-box:hover {
     background-color: var(--gray-600);
 }
+
+/* tu grow size theo content inside */
+#player-wrapper {
+    position: fixed;
+    font-size: 1.6rem;
+    background-color: var(--black-200);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 11;
+    display: flex;
+    border-top: 0.5px solid var(--gray-600);
+    color: var(--font-color);
+}
+
+#player-wrapper > * {
+    flex: 0 0 calc(100% / 3);
+    display: flex;
+}
+
+#player-wrapper .song {
+    justify-content: start;
+}
+
+#player-wrapper .song .song-img {
+    padding: 1em 1em;
+    width: var(--play-height);
+    height: var(--play-height);
+    object-fit: cover;
+    object-position: 10% 0;
+}
+
+#player-wrapper .song .des {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 0.9em;
+    padding: 0 1em;
+}
+
+#player-wrapper .song .des .artist-name {
+    font-size: 0.8em;
+    color: var(--gray-300);
+}
+
+#player-wrapper .song .des > * {
+    padding: 0.1em 0;
+}
+
+#player-wrapper .song .des > *:hover {
+    text-decoration: underline;
+}
+
+#player-wrapper .song .song-options {
+    display: flex;
+    align-items: center;
+}
+
+#player-wrapper .song .song-options i {
+    padding: 1em 0.4em;
+    opacity: 0.7;
+    position: relative;
+}
+
+#player-wrapper .song .song-options i:hover {
+    opacity: 1;
+}
+
+#player-wrapper .controls {
+    flex-direction: column;
+}
+
+#player-wrapper .controls .controls-bar {
+    font-size: 1.6em;
+    margin: 0.6em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#player-wrapper .controls-bar i {
+    margin: 0 0.8em;
+    font-size: 1.3em;
+    opacity: 0.7;
+}
+
+#player-wrapper .controls-bar i:not(:nth-child(3)) {
+    font-size: 0.7em;
+}
+
+#player-wrapper .controls-bar i:hover {
+    opacity: 1;
+}
+
+#player-wrapper .controls .progress-bar {
+    color: var(--gray-400);
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.1512em;
+}
+
+#player-wrapper .controls .progress-bar span {
+    font-size: 0.75em;
+}
+
+#player-wrapper .controls .progress-bar .progress {
+    background-color: var(--gray-500);
+    height: 0.2em;
+    border-radius: 0.1em;
+    flex: 1 0;
+    margin: 0 0.3em;
+}
+
+#player-wrapper .progress-bar .progress .on-play-bar {
+    width: 50%;
+    height: 100%;
+    background-color: var(--gray-200);
+    position: relative;
+    border-radius: 0.1em;
+}
+
+#player-wrapper .progress-bar .progress:hover .on-play-bar,
+#player-wrapper .options .volume:hover .volume-bar {
+    background-color: var(--main-green);
+}
+
+#player-wrapper .progress-bar .progress:hover .on-play-bar::before,
+#player-wrapper .options .volume:hover .volume-bar::before {
+    display: inline-block;
+}
+
+#player-wrapper .progress-bar .progress .on-play-bar::before,
+#player-wrapper .options .volume-controls .volume-bar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -0.05em;
+    background-color: var(--gray-200);
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 50%;
+    transform: translate(0, -38%);
+    display: none;
+}
+
+#player-wrapper .options {
+    justify-content: end;
+    align-items: center;
+}
+
+#player-wrapper .options > * {
+    padding: 0.1em 0.1em;
+    margin: 0 0.4em;
+    opacity: 0.7;
+}
+
+#player-wrapper .options > *:hover {
+    opacity: 1;
+}
+
+#player-wrapper .options .volume {
+    width: 20%;
+    display: flex;
+    align-items: center;
+}
+
+#player-wrapper .options .volume-controls {
+    flex: 1 0;
+    height: 0.2em;
+    background-color: var(--gray-500);
+    margin-left: 0.5em;
+    border-radius: 0.1em;
+}
+
+#player-wrapper .options .volume-controls .volume-bar {
+    width: 100%;
+    height: 100%;
+    background-color: var(--gray-200);
+    border-radius: 0.1em;
+    position: relative;
+}
+
+
 
 

@@ -232,11 +232,48 @@
             <div class="scroll-thumb"></div>
         </div>
         <div id="player-wrapper">
-            <div class="song-info"></div>
-            <div class="player"></div>
-            <div class="controls"></div>
+            <audio src="https://tainhacmienphi.biz/get/song/api/366869" type="audio/mpeg" hidden></audio>
+            <div class="song">
+                <img src="./assets/images/chimsau_mck.jpg" alt="" class="song-img">
+                <div class="des">
+                    <div class="song-name">Chim Sau</div>
+                    <div class="artist-name">MCK ft Trung Tran</div>
+                </div>
+                <div class="song-options">
+                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-solid fa-tablet-screen-button"></i>
+                </div>
+            </div>
+            <div class="controls">
+                <div class="controls-bar">
+                    <i class="fa-solid fa-shuffle"></i>
+                    <i class="fa-solid fa-backward-step"></i>
+                    <i class="fa-solid fa-circle-play play-btn"></i>
+                    <i class="fa-solid fa-forward-step"></i>
+                    <i class="fa-solid fa-repeat"></i>
+                </div>
+                <div class="progress-bar">
+                    <span class="played">0:00</span>
+                    <div class="progress">
+                        <div class="on-play-bar"></div>
+                    </div>
+                    <span class="end">2:00</span>
+                </div>
+            </div>
+            <div class="options">
+                <i class="fa-solid fa-microphone"></i>
+                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-traffic-light"></i>
+                <div class="volume">
+                    <i class="fa-solid fa-volume-high"></i>
+                    <div class="volume-controls">
+                        <div class="volume-bar"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
-<script src="script/main.js" async></script>
+<script type="module" src="script/musicPlayer.js"></script>
+<script type="module" src="script/main.js"></script>
 </html>
