@@ -89,7 +89,7 @@
                             <i class="fa-solid fa-up-right-from-square"></i>
                         </li>
                         <li class="opt">
-                            <span>Log up</span>
+                            <span>Log out</span>
                         </li>
                     </ul>
                 </div>
@@ -102,7 +102,7 @@
                             <img src="./assets/images/chimsau_mck.jpg" alt="MCK Mix">
                             <h4 class="name">RPT MCK Mix</h4>
                             <p class="info">Obito, Tlinh, Cam and more </p>
-                            <div class="play-btn">
+                            <div class="play-btn" song-info="MCK-MIX" type="play-list" locale="VN">
                                 <i class="fa-solid fa-play"></i>
                             </div>
                         </div>
@@ -110,7 +110,7 @@
                             <img src="./assets/images/buocquanhau_vu.jpg" alt="">                                    
                             <h4 class="name">Vu</h4>
                             <p class="des">Buoc Qua Nhau</p>
-                            <div class="play-btn">
+                            <div class="play-btn" song-info="Buoc Qua Nhau" type="song" locale="VN">
                                 <i class="fa-solid fa-play"></i>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                                 <img src="https://charts-images.scdn.co/assets/locale_en/regional/daily/region_vn_default.jpg" alt="MCK Mix">
                                 <h4 class="name">Top 50 Vietnam</h4>
                                 <p class="info">Weekly Update</p>
-                                <div class="play-btn">
+                                <div class="play-btn" song-info="tracks" type="vietnam tracks">
                                     <i class="fa-solid fa-play"></i>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                                 <img src="https://charts-images.scdn.co/assets/locale_en/regional/daily/region_global_default.jpg" alt="MCK Mix">
                                 <h4 class="name">Top 50 Global</h4>
                                 <p class="info">Monthly Update</p>
-                                <div class="play-btn">
+                                <div class="play-btn" song-info="tracks" type="global tracks">
                                     <i class="fa-solid fa-play"></i>
                                 </div>
                             </div>
@@ -146,7 +146,7 @@
                             <img src="./assets/images/chimsau_mck.jpg" alt="MCK Mix">
                             <h4 class="name">Chim Sau</h4>
                             <p class="info">MCK ft Trung Tran</p>
-                            <div class="play-btn">
+                            <div class="play-btn" song-info="Chim Sau" type="song" locale="VN">
                                 <i class="fa-solid fa-play"></i>
                             </div>
                         </div>
@@ -154,7 +154,7 @@
                             <img src="./assets/images/buocquamuacodon_vu.jpg" alt="">                                    
                             <h4 class="name">Buoc Qua Mua Co Don</h4>
                             <p class="des">Vu</p>
-                            <div class="play-btn">
+                            <div class="play-btn" song-info="Buoc Qua Mua Co Don" type="song" locale="VN">
                                 <i class="fa-solid fa-play"></i>
                             </div>
                         </div>
@@ -162,7 +162,7 @@
                             <img src="./assets/images/conanh_vu.jpg" alt="">                                    
                             <h4 class="name">Con Anh</h4>
                             <p class="des">Vu</p>
-                            <div class="play-btn">
+                            <div class="play-btn" song-info="Con Anh" type="song" locale="VN">
                                 <i class="fa-solid fa-play"></i>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                             <img src="./assets/images/gieoqua_HTL_Den.jpg" alt="">                                    
                             <h4 class="name">Gieo Que</h4>
                             <p class="des">Hoang Thuy Linh - Den Vau</p>
-                            <div class="play-btn">
+                            <div class="play-btn" song-info="Gieo Que" type="song" locale="VN">
                                 <i class="fa-solid fa-play"></i>
                             </div>
                         </div>
@@ -182,8 +182,8 @@
                         <div class="content-box">
                             <img src="./assets/images/stay_justinbieber.jpg" alt="MCK Mix">
                             <h4 class="name">Stay</h4>
-                            <p class="info">MCK ft Trung Tran</p>
-                            <div class="play-btn">
+                            <p class="info">Justin Bieber</p>
+                            <div class="play-btn" song-info="Stay" type="song" locale="US-UK">
                                 <i class="fa-solid fa-play"></i>
                             </div>
                         </div>
@@ -191,7 +191,7 @@
                             <img src="./assets/images/industry_baby.jpg" alt="">                                    
                             <h4 class="name">Industry Baby</h4>
                             <p class="des">Lil Nas X</p>
-                            <div class="play-btn">
+                            <div class="play-btn" song-info="Industry baby" type="song" locale="US-UK">
                                 <i class="fa-solid fa-play"></i>
                             </div>
                         </div>
@@ -199,7 +199,15 @@
                             <img src="./assets/images/levitating_dualipa.jpg" alt="">                                    
                             <h4 class="name">Levitating</h4>
                             <p class="des">Dua Lipa</p>
-                            <div class="play-btn">
+                            <div class="play-btn" song-info="Levitating" type="song" locale="US-UK">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="content-box">
+                            <img src="./assets/images/headintheclouds_hayd.jpg" alt="">                                    
+                            <h4 class="name">Head in the clouds</h4>
+                            <p class="des">Hayd</p>
+                            <div class="play-btn" song-info="Head in the clouds" type="song" locale="US-UK">
                                 <i class="fa-solid fa-play"></i>
                             </div>
                         </div>
@@ -232,12 +240,12 @@
             <div class="scroll-thumb"></div>
         </div>
         <div id="player-wrapper">
-            <audio src="https://tainhacmienphi.biz/get/song/api/366869" type="audio/mpeg" hidden></audio>
+            <audio src="" type="audio/mpeg" hidden></audio>
             <div class="song">
-                <img src="./assets/images/chimsau_mck.jpg" alt="" class="song-img">
+                <img src="" alt="" class="song-img d-none">
                 <div class="des">
-                    <div class="song-name">Chim Sau</div>
-                    <div class="artist-name">MCK ft Trung Tran</div>
+                    <div class="song-name"></div>
+                    <div class="artist-name"></div>
                 </div>
                 <div class="song-options">
                     <i class="fa-regular fa-heart"></i>

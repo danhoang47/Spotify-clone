@@ -8,59 +8,60 @@ const volumeBar = document.querySelector('#player-wrapper .volume-bar');
 const volumeTrack = document.querySelector('#player-wrapper .volume-controls');
 const songPlayed = document.querySelector('#player-wrapper .played');
 const songDuration = document.querySelector('#player-wrapper .end');
+// player button
 const loopBtn = document.querySelector('#player-wrapper .fa-repeat');
+const shuffleBtn = document.querySelector('#player-wrapper .fa-shuffle');
+const nextSongBtn = document.querySelector('#player-wrapper .fa-forward-step');
+const prevSongBtn = document.querySelector('#player-wrapper .fa-backward-step');
+
+const listSongItems = document.querySelectorAll('#main-content .play-btn');
+
 const volumeIcons = [
     'fa-volume-xmark',
     'fa-volume-low',
     'fa-volume-high',
 ]
+let index = 0;
 let currentAudioLength;
-let volumeMouseDown = false;
+let playerMouseDown = false;
 let curVolume = volumeBtn.classList.item(1);
 
 export const musicPlayer = {
     isPlay: false,
     volume: 100,
+    onPlayingTrack: [],
+    isMixed: false,
+    locale: '',
 
     init() {
-        playBtn.addEventListener('click', () => {
-            if (!musicPlayer.isPlay) {
-                musicPlayer.isPlay = true;
-                audio.play();
-                this.renderSongDuration();
-                playBtn.classList.replace('fa-circle-play', 'fa-circle-pause');
-                currentAudioLength = setInterval(musicPlayer.renderPlayer, 100);
-            }
-            else {
-                musicPlayer.isPlay = false;
-                audio.pause();
-                playBtn.classList.replace('fa-circle-pause', 'fa-circle-play');
-                clearInterval(currentAudioLength);
-            } 
-        });
+        playBtn.addEventListener('click', this.playSong);
 
         volumeBtn.addEventListener('click', () => {
             if (!audio.muted) 
-                renderVolume(audio.muted = true);
+                musicPlayer.renderVolume(audio.muted = true);
             else 
-                renderVolume(audio.muted = false);
+                musicPlayer.renderVolume(audio.muted = false);
         });
 
+        progressBar.addEventListener('mousedown', () => playerMouseDown = true);
+        progressBar.addEventListener('mousemove', function(e) {
+            if (playerMouseDown)
+                musicPlayer.setCurrentTime(e);
+        })
 
         progressBar.addEventListener('click', this.setCurrentTime);
 
         volumeTrack.addEventListener('mousedown', () => {
-            volumeMouseDown = true;
+            playerMouseDown = true;
         });
 
         document.addEventListener('mouseup', () => {
-            volumeMouseDown = false;
+            playerMouseDown = false;
         });
 
         volumeTrack.addEventListener('mousemove', function(e) {
-            // if (volumeMouseDown) {
-            //     console.log(e.clientX);
-            // }
+            if (playerMouseDown) 
+                musicPlayer.setVolume(e);
         });
 
         loopBtn.addEventListener('click', () => {
@@ -73,6 +74,98 @@ export const musicPlayer = {
         })
 
         volumeTrack.addEventListener('click', this.setVolume);
+
+        for (let i = 0; i < listSongItems.length; i++) {
+            listSongItems.item(i).addEventListener('click', function(e) {
+                clearInterval(currentAudioLength);
+                let songName = e.currentTarget.getAttribute('song-info');
+                let locale = e.currentTarget.getAttribute('locale');
+                // single
+                if (songName !== 'tracks')
+                    musicPlayer.setPlayedSong(songName.toLowerCase(), locale, false);
+                //tracks
+                else 
+                    musicPlayer.setPlayedSong(e.currentTarget.getAttribute('type'), '', true);
+            });
+        }
+
+        audio.addEventListener('durationchange', () => {this.renderSongDuration()})
+
+        shuffleBtn.addEventListener('click', () => {
+            if(!this.isMixed) {
+                let listMixed = this.getListMixed(this.onPlayingTrack);
+                this.onPlayingTrack = listMixed;
+                this.setListTrack(this.locale);
+                this.isMixed = true;
+            }
+            shuffleBtn.classList.toggle('cl-green');
+        })
+    },
+
+    setPlayedSong(songName, locale, isTrack) {
+        if (!isTrack) {
+            let searchList = [];
+            if (locale === 'VN') searchList = vnSongs;
+            else if (locale === 'US-UK') searchList = usukSongs;
+            searchList.forEach((value) => {
+                if (value.songName.toLowerCase() === songName) {
+                    audio.src = value.audio;
+                    audio.load(); // load data of new song
+                    this.renderUI(value); // render img, name and artist
+                    this.playSong(); //
+                    musicPlayer.isPlay = false;
+                }
+            })
+        }
+        else {
+            if (songName === 'vietnam tracks') {
+                this.onPlayingTrack = vnSongs;
+                this.setListTrack('VN');
+                this.locale = 'VN';
+                audio.addEventListener('ended', this.setListTrack);
+            }
+            else {
+                this.onPlayingTrack = usukSongs;
+                this.setListTrack('US-UK');
+                this.locale = 'US-UK';
+                audio.addEventListener('ended', this.setListTrack)
+            }
+        }
+    },
+
+    playSong() {
+        if (!musicPlayer.isPlay) {
+            musicPlayer.isPlay = true;
+            audio.play();
+            musicPlayer.renderSongDuration();
+            playBtn.classList.replace('fa-circle-play', 'fa-circle-pause');
+            currentAudioLength = setInterval(musicPlayer.renderPlayer, 900);
+        }
+        else {
+            musicPlayer.isPlay = false;
+            audio.pause();
+            playBtn.classList.replace('fa-circle-pause', 'fa-circle-play');
+            clearInterval(currentAudioLength);
+        } 
+    },
+
+    renderUI(song) {
+        let playerSong = document.querySelector('#player-wrapper .song');
+        playerSong.querySelector('img').classList.remove('d-none');
+        playerSong.querySelector('img').src = song.cover;
+        playerSong.querySelector('.song-name').innerHTML = `${song.songName}`;
+        playerSong.querySelector('.artist-name').innerHTML = `${song.artist}`;
+    },
+
+    setListTrack(locale) {
+        if (index === musicPlayer.onPlayingTrack.length) {
+            audio.removeEventListener('ended');
+            index = 0;
+        }
+        else {
+            musicPlayer.setPlayedSong(musicPlayer.onPlayingTrack[index].songName.toLowerCase(), locale, false);
+            index++;
+        }
     },
 
     setCurrentTime(e) {
@@ -104,7 +197,7 @@ export const musicPlayer = {
         let percent = x/parseInt(volumeBarWidth);
         audio.volume = percent;
         volumeBar.style.width = `${Math.ceil(percent * 100)}%`;
-        renderVolume(false);
+        musicPlayer.renderVolume(false);
     },
 
     renderSongDuration() {
@@ -145,24 +238,24 @@ export const musicPlayer = {
         mixList.forEach((value, index) => {
             listPlay = [...listPlay, listOfSongs[value]];
         });
-        console.log(listPlay);
+
+        return listPlay;
     },
-}
 
-function renderVolume(audioState) {
-    if (audio.volume == 0 || audioState)  {
-        volumeBtn.classList.replace(curVolume, volumeIcons[0]);
+    renderVolume(audioState) {
+        if (audio.volume == 0 || audioState)  {
+            volumeBtn.classList.replace(curVolume, volumeIcons[0]);
+        }
+        else {
+            audio.muted = false;
+            if (audio.volume > 0 && audio.volume <= 0.6)
+                volumeBtn.classList.replace(curVolume, volumeIcons[1]);
+            else 
+                volumeBtn.classList.replace(curVolume, volumeIcons[2]);
+        }
+    
+        curVolume = volumeBtn.classList.item(1);
     }
-    else {
-        audio.muted = false;
-        console.log(audio.volume);
-        if (audio.volume > 0 && audio.volume <= 0.6)
-            volumeBtn.classList.replace(curVolume, volumeIcons[1]);
-        else 
-            volumeBtn.classList.replace(curVolume, volumeIcons[2]);
-    }
-
-    curVolume = volumeBtn.classList.item(1);
 }
 
 musicPlayer.init();
